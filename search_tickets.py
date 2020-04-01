@@ -18,7 +18,7 @@ M5CO = '1234567890'
 
 def search_tickets(m5co):
   response = []
-  search_str = urllib.quote("\"cf_m5_account:%s\"" % m5co)
+  search_str = urllib.quote("\"cf_ompany_id:%s\"" % m5co)
   print BASE_URL + 'search/tickets?query=%s' % search_str
   #r = requests.get(BASE_URL + 'ticket_fields', auth = (API_KEY, PASSWORD ))
   r = requests.get(BASE_URL + 'search/tickets?query=%s' % search_str, auth = (API_KEY, PASSWORD))
