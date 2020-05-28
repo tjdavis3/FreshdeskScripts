@@ -12,10 +12,9 @@ DOMAIN=env.str('DOMAIN', 'magna5.freshdesk.com')
 PASSWORD=env.str('PASSWORD','x')
 BASE_URL = 'https://' + DOMAIN + '/api/v2/'
 
-def get_tickets():
+def get_contacts():
   response = []
-  #r = requests.get(BASE_URL + "tickets?email=jhalteman@magna5global.com&per_page=100", auth = (API_KEY, PASSWORD))
-  r = requests.get(BASE_URL + "tickets?per_page=100", auth = (API_KEY, PASSWORD))
+  r = requests.get(BASE_URL + "contacts?per_page=100", auth = (API_KEY, PASSWORD))
 
   if r.status_code == 200:
     print "Request processed successfully, the response is given below"
@@ -29,8 +28,8 @@ def get_tickets():
     print "Status Code : " + str(r.status_code)
   return response
 
-def del_ticket(id):
-  r = requests.delete(BASE_URL + 'tickets/' + str(id), auth = (API_KEY, PASSWORD))
+def del_contact(id):
+  r = requests.delete(BASE_URL + 'contacts/' + str(id), auth = (API_KEY, PASSWORD))
   if r.status_code == 204:
     print "ID %s deleted" % id
   else:
@@ -38,10 +37,10 @@ def del_ticket(id):
 
 
 while True:
-  tickets=get_tickets()
-  if len(tickets) == 0:
+  contacts=get_contacts()
+  if len(contacts) == 0:
     break
-  for ticket in tickets:
-    del_ticket(ticket.get('id', ''))
+  for contact in contacts:
+    del_contact(contact.get('id', ''))
    # time.sleep(1)
     
